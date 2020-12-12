@@ -132,9 +132,15 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-  let editString = str;
+  const editString = str;
   const target = value;
+  const targetLength = target.length;
+  const lengthOfStr = editString.length;
 
+  const targetPosition = editString.indexOf(target, 0);
+  const firstPart = editString.slice(0, targetPosition);
+  const secondPart = editString.slice(targetPosition + targetLength, lengthOfStr);
+  return `${firstPart}${secondPart}`;
 }
 
 /**
@@ -148,8 +154,8 @@ function removeFirstOccurrences(str, value) {
  *   '<span>' => 'span'
  *   '<a>' => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.slice(1, str.length - 1);
 }
 
 
@@ -163,8 +169,8 @@ function unbracketTag(/* str */) {
  *   'Thunderstruck' => 'THUNDERSTRUCK'
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
-function convertToUpperCase(/* str */) {
-  throw new Error('Not implemented');
+function convertToUpperCase(str) {
+  return str.toUpperCase();
 }
 
 /**
@@ -182,8 +188,9 @@ function convertToUpperCase(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  const strArray = str.split(';');
+  return strArray;
 }
 
 /**
@@ -209,8 +216,31 @@ function extractEmails(/* str */) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+/*   const upLeftAngle = '┌';
+  const upRightAngle = '┐';
+  const downRightAngle = '┘';
+  const downLeftAngle = '└';
+  const widthSide = '─';
+  for (let i = 0; i < width - 3; i += 1) {
+    widthSide += '─';
+  }
+  const top = `${upLeftAngle}${widthSide.repeat(width - 2)}${upRightAngle}\n`;
+  const middle = ' ';
+  for (let z = 0; z < width - 3; z += 1) {
+    middle += ' ';
+  }
+  const middleString = `|${middle.repeat(width - 2)}|\n`;
+  for (let u = 0; u < height - 3; u += 1) {
+    middleString += middleString;
+  }
+  const bottom = `${downLeftAngle}${widthSide.repeat(width - 2)}${downRightAngle}\n`;
+  return `${top}${middleString.repeat(height - )}${bottom}`; */
+  const top = `┌${'─'.repeat(width - 2)}┐\n`;
+  const middle = `|${' '.repeat(width - 2)}|\n`;
+  const bottom = `└${'─'.repeat(width - 2)}┘\n`;
+
+  return `${top}${middle.repeat(height - 2)}${bottom}`;
 }
 
 
@@ -247,8 +277,15 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  if (value === 'undefined') {
+    return false;
+  }
+
+  if (typeof value === 'string' || value instanceof String) {
+    return true;
+  }
+  return false;
 }
 
 
@@ -276,8 +313,9 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const newValue = value;
+  return newValue;
 }
 
 
