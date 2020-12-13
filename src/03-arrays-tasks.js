@@ -236,9 +236,15 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-  arr.map((el, index) => arr.slice(0, index + 1));
-  arr.reduce((accumulator, elementValue) => accumulator + elementValue);
-  return arr;
+  // return arr.map((el, ind) => arr.slice(0, ind + 1)).reduce((accum, elValue) => accum + elValue);
+  const result = [];
+  let sum = 0;
+  arr.map((el, index) => {
+    sum += el;
+    result[index] = sum;
+    return result;
+  });
+  return result;
 }
 
 /**
@@ -307,8 +313,15 @@ function get3TopItems(arr) {
  *   [ null, 1, 'elephant' ] => 1
  *   [ 1, '2' ] => 1
  */
-function getPositivesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getPositivesCount(arr) {
+  let result = 0;
+  arr.map((el) => {
+    if (typeof el === 'number' && el > 0) {
+      result = el;
+    }
+    return result;
+  });
+  return result;
 }
 
 /**
@@ -324,8 +337,9 @@ function getPositivesCount(/* arr */) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const numArr = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  return arr.sort((a, b) => numArr.indexOf(a) - numArr.indexOf(b));
 }
 
 /**
