@@ -217,27 +217,27 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-/*   const upLeftAngle = '┌';
-  const upRightAngle = '┐';
-  const downRightAngle = '┘';
-  const downLeftAngle = '└';
-  const widthSide = '─';
-  for (let i = 0; i < width - 3; i += 1) {
-    widthSide += '─';
-  }
-  const top = `${upLeftAngle}${widthSide.repeat(width - 2)}${upRightAngle}\n`;
-  const middle = ' ';
-  for (let z = 0; z < width - 3; z += 1) {
-    middle += ' ';
-  }
-  const middleString = `|${middle.repeat(width - 2)}|\n`;
-  for (let u = 0; u < height - 3; u += 1) {
-    middleString += middleString;
-  }
-  const bottom = `${downLeftAngle}${widthSide.repeat(width - 2)}${downRightAngle}\n`;
-  return `${top}${middleString.repeat(height - )}${bottom}`; */
+  /*   const upLeftAngle = '┌';
+    const upRightAngle = '┐';
+    const downRightAngle = '┘';
+    const downLeftAngle = '└';
+    const widthSide = '─';
+    for (let i = 0; i < width - 3; i += 1) {
+      widthSide += '─';
+    }
+    const top = `${upLeftAngle}${widthSide.repeat(width - 2)}${upRightAngle}\n`;
+    const middle = ' ';
+    for (let z = 0; z < width - 3; z += 1) {
+      middle += ' ';
+    }
+    const middleString = `|${middle.repeat(width - 2)}|\n`;
+    for (let u = 0; u < height - 3; u += 1) {
+      middleString += middleString;
+    }
+    const bottom = `${downLeftAngle}${widthSide.repeat(width - 2)}${downRightAngle}\n`;
+    return `${top}${middleString.repeat(height - )}${bottom}`; */
   const top = `┌${'─'.repeat(width - 2)}┐\n`;
-  const middle = `|${' '.repeat(width - 2)}|\n`;
+  const middle = `│${' '.repeat(width - 2)}│\n`;
   const bottom = `└${'─'.repeat(width - 2)}┘\n`;
 
   return `${top}${middle.repeat(height - 2)}${bottom}`;
@@ -260,8 +260,17 @@ function getRectangleString(width, height) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const stringValueArray = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+  const cipterArray = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'.split('');
+  const resultArray = str.split('').map((el) => {
+    if (!stringValueArray.includes(el)) {
+      return el;
+    }
+    const indexEl = stringValueArray.indexOf(el);
+    return cipterArray[indexEl];
+  });
+  return resultArray.join('');
 }
 
 /**
